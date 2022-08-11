@@ -1,0 +1,138 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage[usenames]{color}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\topmargin = -50pt
+\textheight = 700pt
+\oddsidemargin = 0pt
+\textwidth = 17cm
+
+\begin{document}
+\begin{center}
+\sc\bfseries\Huge Отчёт \\
+\end{center}
+
+\section{Условия задачи} \
+
+{\bf Дана система:}
+\[
+\begin{cases}
+\ln(\sqrt{1+x^2}) = \sqrt{e^{2y + \sin{y} - 1}}\\
+(1+\alpha)x = e^{-\left( \dfrac{x}{\sqrt{1 + x^2}} + \sin{y} \right)^2}
+\end{cases}
+\]
+\\
+Из первого уравнения системы получаем $0<\ln{\sqrt{1+x^2}} => x \ne 0$\\
+Из второго уравнения системы - $0<(1+\alpha)x \le 1$
+Значит,
+\[\left[
+\begin{gathered}\,-1 <\alpha \leq \dfrac{1}{x}-1, \, x >0\\ \dfrac{1}{x}-1\leq \alpha <-1, \, x <0\end{gathered}
+\right.\]
+\\
+Запишем в виде 
+$
+\left(
+\begin{smallmatrix}
+x \\ y
+\end{smallmatrix}
+\right)
+=
+\left(
+\begin{smallmatrix}
+f_1 (x,y) \\ f_2 (x,y)
+\end{smallmatrix}
+\right)
+$
+
+\[  
+\begin{cases}
+x = \dfrac{1}{1+\alpha} e^{- \left( \dfrac{x}{\sqrt{1+x^2}} + \sin{y} \right )^2} = f_1 (x,y, \alpha)\\ 
+\\
+y = \dfrac12 \left( 2\ln{\left( \ln{\sqrt{1+x^2}} \right)} - \sin{y} + 1 \right) = f_2 (x,y)
+\end{cases}
+\]
+
+{\bf Определение:} $X$ - нормированное пространство. Отображение 
+$F:X \times A \to X$ называют сжимающим, если для некоторого $\exists q:\ 0<q<1;\  \forall x_1,x_2 \in X;\ \forall \alpha \in A$  выполнено 
+$\|F(x_1,\alpha) - F(x_2,\alpha)\|<q\|x_1 - x_2\|$
+
+{\bf Теорема 1:} \\ 
+Пусть :	
+\begin{itemize}
+\item $\Omega\subseteq X $ замкнуто $(\overline{\Omega}=\Omega)$
+\item $X$ нормированное
+\item $F:\Omega\times A \to \Omega$; $F$ - сжимающее
+\end{itemize}
+Тогда:
+
+\begin{itemize}
+\item $\exists !$ решение $x_{*}=x_{*}(\alpha)$ уравнения $F(x_{*})=x_{*}$
+\item Это решение может быть получено: $x_{*} = \lim\limits_{k\to\infty} x_k$, где $x_k =x_k(\alpha)\;\;\; x_{k+1}=F(x_k, \alpha)$
+\item Скорость сходимости можно оценить по правилу:
+$\|x_* - x_k\| \leq \dfrac{q^k}{1-q}\;\|x_1 -  x_0\|$
+\end{itemize}
+
+{\bf Теорема 2:} \\
+Пусть : 
+\begin{enumerate}
+\item $X$ нормированное пространство 
+\item $\Omega\subseteq X $ замкнуто $(\overline{\Omega}=\Omega)$
+\item $F:\Omega\times A \to \Omega$
+\item $\forall x \in \Omega \;\;\;\exists F'_x (x, \alpha)=\frac{\partial F(x, \alpha)}{\partial x}$
+\item $\forall x \in \Omega, \ \forall \alpha \in A \;\;\; \|F'_x(x,\alpha)\| \leq q<1$
+\end{enumerate}
+Тогда: $F$ сжимающее отображение и выполнена \textsf{Теорема 1}
+\smallskip
+\section{Проверка условий Теоремы 2}
+Отметим, что в нашем случае $X = \mathbb{R}^2$ - это нормированное пространство
+\subsection{Поиск области \protect$\Omega$}
+Из условия на неотрицательность подкоренного выражения в исходной системе получаем неравенство на $y$:
+\[ 0 \le 2y+\sin{y}-1 \ => \ 0.335 \le y \]
+Выберем область по $x$: $x>0$. Тогда $-1 <\alpha \leq \dfrac{1}{x}-1$\\
+$f_1(x,y,\alpha)$ попадает в нашу область $(0, +\infty)$\\
+$f_2(x,y) \in [-\infty,+\infty]$.
+Получаем, что наша $\Omega=[1.28,+\infty]\times[0.335,+\infty]$ ограничена, выпукла.
+\subsection{Матрица Якоби}
+Посчитаем частные производные:
+\[\dfrac{\partial f_1}{\partial x} = \dfrac{-2}{1+\alpha}  e^{-\left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y} - 1\right)^2} \left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y}\right) \dfrac{1}{(1+x^2)^{3/2}}; \]
+\[\dfrac{\partial f_1}{\partial y} = \dfrac{-2}{1+\alpha}  e^{-\left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y} - 1\right)^2} \left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y}\right) \cos{y};\]
+\[\dfrac{\partial f_2}{\partial x} = \dfrac{1}{\ln{\sqrt{1+x^2}}}\dfrac{x}{1+x^2};\] 
+\[\dfrac{\partial f_2}{\partial y} = \dfrac{1}{2} \cos{y}\]
+Оценим их по модулю. С одним из выражений всё ясно:
+\[\left|\dfrac{\partial f_2}{\partial y}\right| \le \frac12; \]
+Оценим остальные. Заметим, что
+\[\dfrac{x}{\sqrt{1+x^2}} \le 1\]   
+\[\dfrac{x}{1+x^2} \le \dfrac12\]   
+\[\dfrac{1}{\left(1+x^2\right)^{3/2}} \le 1\]
+\[-\left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y}\right)^2 \le 2\]
+Выражение $\dfrac{1}{\ln{\sqrt{1+x^2}}}\dfrac{x}{1+x^2} \leq 1$ при $x \geq 1.28$
+\[\left|\frac{\partial f_1}{\partial x}\right| = \left| \dfrac{-2}{1+\alpha}  e^{-\left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y} - 1\right)^2} \left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y}\right) \dfrac{1}{(1+x^2)^{3/2}}\right| \le \frac{3}{1+\alpha} e^{-4}\]
+\[\left|\frac{\partial f_1}{\partial y}\right| = \left| \dfrac{-2}{1+\alpha}  e^{-\left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y} - 1\right)^2} \left(\dfrac{x}{\sqrt{1+x^2}} + \sin{y}\right) \cos{y}\right| \le \frac{3}{1+\alpha} e^{-4}\]
+\[\left|\frac{\partial f_2}{\partial x}\right| = \left| \dfrac{1}{\ln{\sqrt{1+x^2}}}\dfrac{x}{1+x^2}\right| \le 1\]
+
+Получаем, что для того, чтобы норма Якобиана была меньше единицы, должно выполняться неравенство:
+\[\frac{3}{1+\alpha} e^{-4} \le 1 \   \ => \   \ -1 + 3e^{-4} \le \alpha\]
+
+Значит, возьмем в качестве $A$ множество $(0; 3]$
+Cледовательно, если в качестве нормы взять сумму модулей по столбцам, то наша система удовлетворяет условиям второй теоремы (q = 3/4).
+
+
+\section {Оценка количества итераций:}
+Хотим получить для $k$ оценку, т.е. найти минимальное количество шагов алгоритма, после которого точность станет достаточно малой ($<\varepsilon$):
+\large
+$$
+\begin{aligned}
+\rho(x_k - &x*) \leq \frac{q^k}{1-q}\rho(x_1,x_0) < \varepsilon\\
+k \ln(q) &< \ln(\varepsilon)+\ln(1-q)+\ln(x_1-x_0)\\
+k  &> \frac{\ln(\varepsilon)}{\ln(q)} \quad (\ln(q) < 0)
+\end{aligned}
+$$
+Таким образом, для любого $k > \frac{\ln(\varepsilon)}{\ln(q)}$ расстояние от $x_k$ до $x_*$ не превосходит заданного $\varepsilon$. Так как нас интересует минимальное значение числа итераций, возьмем в качестве $k_{min} = \lceil \frac{\ln(\varepsilon)}{\ln(q)} \rceil$.
+
+
+\end{document}

@@ -1,0 +1,3 @@
+# Hashing parameter
+# Num of last digits of phone
+4

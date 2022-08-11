@@ -1,0 +1,5 @@
+# Hashing parameter
+# Num of first symbols of name
+4
+# Num of last digits of phone
+7
